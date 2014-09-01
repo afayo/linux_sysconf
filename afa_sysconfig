@@ -1,0 +1,47 @@
+#!/bin/bash
+
+#安装传输工具ssh
+#sudo scp ./dvrrdk.tar.gz root@192.168.1.48:/home //将dvrrdk.tar.gz拷贝到192.168.1.48这台远端机的home目录下
+#sudo scp  root@192.168.1.48:/home/dvrrdk.tar.gz  ./   //将远端机的home目录下dvrrdk.tar.gz拷贝到当前目录下
+sudo apt-get install openssh-server -y
+
+sudo apt-get install subversion -y
+
+#xiaobo 123987
+svn co svn://192.168.1.2/ipnc_rdk/trunk ipnc_rdk
+svn co svn://192.168.1.2/iss_03_50_00_00/trunk iss_03_50_00_00
+svn co svn://192.168.1.2/hdvpss_01_00_01_37/trunk hdvpss_01_00_01_37
+svn co svn://192.168.1.2/kernel/trunk kernel
+
+
+echo "嵌入式开发.."
+#sudo apt-get install putty -y
+sudo apt-get install tftpd-hpa  tftp-hpa  xinetd -y
+sudo apt-get install nfs-kernel-server -y
+sudo apt-get install bison flex mtd-utils -y
+
+echo "设置tftp..."
+mkdir ~/tftpboot
+chmod 777 ~/tftpboot
+echo -e "RUN_DAEMON=\"yes\"" | sudo tee  /etc/default/tftpd-hpa
+echo -e "OPTIONS=\"-l -s -c /home/$(whoami)/tftpboot\"" | sudo tee -a /etc/default/tftpd-hpa
+echo -e "TFTP_USERNAME=\"root\"" | sudo tee -a /etc/default/tftpd-hpa
+echo -e "TFTP_DIRECTORY=\"/home/$(whoami)/tftpboot\"" | sudo tee -a /etc/default/tftpd-hpa
+echo -e "TFTP_ADDRESS=\"0.0.0.0:69\"" | sudo tee -a /etc/default/tftpd-hpa
+echo -e "TFTP_OPTIONS=\"--secure\"" | sudo tee -a /etc/default/tftpd-hpa
+sudo service tftpd-hpa restart
+
+echo "设置nfs..."
+mkdir ~/nfsroot
+chmod 777 ~/nfsroot
+echo -e "/home/$(whoami)/nfsroot *(rw,no_root_squash,no_all_squash,sync)" | sudo tee -a /etc/exports
+sudo exportfs -av
+sudo service nfs-kernel-server restart 
+
+
+#nfs export path
+######IPNC###########
+
+#8148EVM
+/nfsroot/target/filesys  *(rw,nohide,insecure,no_subtree_check,async,no_root_squash)
+
