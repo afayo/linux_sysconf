@@ -1,7 +1,17 @@
 #!/bin/bash
 
+
+
 #修改默认的shell为bash，选择no
 sudo dpkg-reconfigure dash
+
+#更新系统
+sudo apt-get update && apt-get upgrade -y
+
+#安装gcc,make工具
+sudo apt-get install gcc
+sudo apt-get install make
+
 
 #安装ZSH
 sudo apt-get install git-core
