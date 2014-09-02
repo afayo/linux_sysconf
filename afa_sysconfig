@@ -49,7 +49,8 @@ sudo service tftpd-hpa restart
 echo "设置nfs..."
 mkdir ~/nfsroot
 chmod 777 ~/nfsroot
-echo -e "/home/$(whoami)/nfsroot *(rw,no_root_squash,no_all_squash,sync)" | sudo tee -a /etc/exports
+#echo -e "/home/$(whoami)/nfsroot *(rw,no_root_squash,no_all_squash,sync)" | sudo tee -a /etc/exports
+echo -e "/home/$(whoami)/nfsroot *(rw,nohide,insecure,no_subtree_check,async,no_root_squash)" | sudo tee -a /etc/exports
 sudo exportfs -av
 sudo service nfs-kernel-server restart 
 
