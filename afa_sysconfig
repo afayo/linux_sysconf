@@ -12,6 +12,10 @@ sudo apt-get update && apt-get upgrade -y
 sudo apt-get install gcc
 sudo apt-get install make
 
+#安装图形文本编辑器
+sudo apt-get install leafpad
+sudo apt-get install gvim
+
 
 #安装ZSH
 sudo apt-get install git-core
