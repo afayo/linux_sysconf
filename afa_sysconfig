@@ -75,6 +75,19 @@ sudo service nfs-kernel-server restart
 #8148EVM
 /nfsroot/target/filesys  *(rw,nohide,insecure,no_subtree_check,async,no_root_squash)
 
+#install rabbitvcs ;  请参考rabbitvcs官网安装步骤
+sudo  add-apt-repository ppa:rabbitvcs/ppa
+#Add the following line to your /etc/apt/sources.list file
+#deb http://ppa.launchpad.net/rabbitvcs/ppa/ubuntu **DISTRIBUTION** main
+ su root 
+ 
+ echo "deb http://ppa.launchpad.net/rabbitvcs/ppa/ubuntu **DISTRIBUTION** main"  >/etc/apt/sources.list 
+
+ sudo apt-get update 
+ 
+ sudo apt-get install rabbitvcs-nautilus3 rabbitvcs-thunar rabbitvcs-gedit rabbitvcs-cli  thunar-vcs-plugin 
+#After installation is complete, logout and log back in for changes to take effect. 
+
 
 
 
