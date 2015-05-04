@@ -90,5 +90,29 @@ sudo  add-apt-repository ppa:rabbitvcs/ppa
 
 
 
+#install samba
+sudo apt-get install samba cifs-utils
+sudo cp /etc/samba/smb.conf /etc/samba/smb.conf.bak
+sudo touch /etc/samba/smbpasswd
+sudo smbpasswd -a afa 
+sudo service samba restart 
+
+#config
+[share]
+        comment = Shared Folder with username and password
+	path = /tftpboot/DM812x/nand
+	public = yes
+	writable = no
+	valid users = afa
+	create mask = 0700
+	directory mask = 0700
+	force user = nobody
+	force group = nogroup
+	available = yes
+	browseable = yes
+	workgroup = WORKGROUP
+	display charset = UTF-8
+	unix charset = UTF-8
+	dos charset = cp936
 
 
