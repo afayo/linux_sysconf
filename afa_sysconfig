@@ -84,10 +84,12 @@ sudo  add-apt-repository ppa:rabbitvcs/ppa
  echo "deb http://ppa.launchpad.net/rabbitvcs/ppa/ubuntu **DISTRIBUTION** main"  >/etc/apt/sources.list 
 
  sudo apt-get update 
+ #update source-list:
+ #refer link : http://wiki.ubuntu.org.cn/Qref/Source       
  
  sudo apt-get install rabbitvcs-nautilus3 rabbitvcs-thunar rabbitvcs-gedit rabbitvcs-cli  thunar-vcs-plugin 
 #After installation is complete, logout and log back in for changes to take effect. 
-
+#find the app and copy  to desktop : such as : /usr/share/applications/nautilus.desktop
 
 
 #install samba
