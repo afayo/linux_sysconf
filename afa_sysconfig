@@ -130,3 +130,10 @@ fi
 
 #3、使其生效 ，退出SSH，重新登录。
 
+#删除安装后的软件包
+sudo apt-get clean #- 删除所有已下载的包文件
+sudo apt-get autoclean #- 删除老版本的已下载的包文件
+sudo apt-get check #- 核对以确认系统的依赖关系的完整性
+
+#还有个狠的，要是你不在乎今后的升级的话，
+rm -rf /var/cache/apt
