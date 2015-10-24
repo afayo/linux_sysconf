@@ -5,7 +5,8 @@
 #修改默认的shell为bash，选择no
 sudo dpkg-reconfigure dash
 
-#更新系统
+#更新源地址:http://wiki.ubuntu.org.cn/index.php?title=Qref/Source&variant=zh-cn
+#安装完一个新系统时，首先更新源列表，后面工作会顺利很多，更新系统
 sudo apt-get update && apt-get upgrade -y
 
 #安装gcc,make工具
@@ -117,4 +118,15 @@ sudo service samba restart
 	unix charset = UTF-8
 	dos charset = cp936
 
+
+#sudo apt-get install 安装自动补全
+#1、安装bash-completion
+apt-get install bash-completion
+
+#2、编辑~/.bashrc 文件，添加如下内容：
+if [ -f /etc/bash_completion ]; then
+. /etc/bash_completion
+fi
+
+#3、使其生效 ，退出SSH，重新登录。
 
