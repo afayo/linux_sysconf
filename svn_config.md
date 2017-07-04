@@ -20,3 +20,9 @@
     查看 主目录下： ~/.subversion/auth/svn.simple/ 目录下是否存在文件。存在的话，看文件权限是否可写。 
     不可写的，改成可写权限。
     
+
+3.运行svn log提示错误：
+svn log    svn: E220001: Item is not readable
+解决版本有两个：
+1，在authz文件中增加一行： ×=r
+2，或者在svnserve.conf中开启 anoe_access = read
