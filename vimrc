@@ -1,3 +1,6 @@
+#mkdir -p ~/.vim/bundle
+# clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+#:PluginInstall
 set nocompatible              " 去除VI一致性,必须要添加
 filetype off                  " 必须要添加
 
