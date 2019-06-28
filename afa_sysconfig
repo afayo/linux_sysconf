@@ -93,7 +93,8 @@ sudo  add-apt-repository ppa:rabbitvcs/ppa
  sudo apt-get install rabbitvcs-nautilus3 rabbitvcs-thunar rabbitvcs-gedit rabbitvcs-cli  thunar-vcs-plugin 
 #After installation is complete, logout and log back in for changes to take effect. 
 #find the app and copy  to desktop : such as : /usr/share/applications/nautilus.desktop
-
+#touch ~/.local/share/nautilus-python/extensions/test.py
+#nautilus -q
 
 #install samba
 sudo apt-get install samba cifs-utils
