@@ -21,11 +21,15 @@ mkdir -p ~/.vim/
 
 git clone  https://github.com/afayo/linux_sysconf.git  
 
-cd linux_sysconf/vim/plugins 
-
 cp linux_sysconf/vim/vimrc  ~/.vimrc  
+
+cd linux_sysconf/vim/plugins 
 
 tar -zxvf bundle.tar.gz  -C ~/.vim
 
-#open gvim, ::PluginInstall or :VundleInstall 
+cd -
+
+sudo rm  linux_sysconf -rf 
+
+#open gvim, and :PluginInstall or :VundleInstall 
 
