@@ -97,13 +97,20 @@ sudo  add-apt-repository ppa:rabbitvcs/ppa
 #nautilus -q
 
 #install samba
-sudo apt-get install samba cifs-utils
+#sudo apt-get install samba cifs-utils
+sudo apt-get install samba 
+
 sudo cp /etc/samba/smb.conf /etc/samba/smb.conf.bak
 sudo touch /etc/samba/smbpasswd
 sudo smbpasswd -a afa 
 sudo service samba restart || sudo service smbd restart 
 Debian changed service from 'samba' to 'smbd'. Closes GH-17 … 
 
+#另外需要注意，Ubuntu16.04已经能正常工作了。但是Ubuntu18.04为什么还是连不上？
+#因为smb版本Samba 4.5.0以后，加密方式有更改，需要大于和等于Samba 4.5.0的版本修改smb.conf来兼容低版本的smb客户端，
+#在/etc/samba/smb.conf文件的共享目录前，增加   ntlm auth = yes
+
+#修改/etc/samba/smb.conf文件，配置共享文件夹，有三个样例，share、tftpboot、firmware
 #config
 [share]
         comment = Shared Folder with username and password
@@ -122,6 +129,39 @@ Debian changed service from 'samba' to 'smbd'. Closes GH-17 …
 	unix charset = UTF-8
 	dos charset = cp936
 
+[tftpboot]
+    comment = Shared Folder with username and password
+	path = /tftpboot/
+	public = yes
+	writable = yes
+	available = yes
+	browseable = yes
+	create mask = 0700
+	directory mask = 0700
+	valid users = afa 
+	force user = afa 
+	force group = afa 
+	workgroup = WORKGROUP
+	display charset = UTF-8
+	unix charset = UTF-8
+	dos charset = cp936
+
+[firmware]
+    comment = Shared Folder with username and password
+	path = /home/vpr/tftpboot/
+	public = yes
+	writable = yes
+	valid users = vpr
+	create mask = 0700
+	directory mask = 0700
+	force user = root
+	force group = root
+	available = yes
+	browseable = yes
+	workgroup = WORKGROUP
+	display charset = UTF-8
+	unix charset = UTF-8
+	dos charset = cp936
 
 #sudo apt-get install 安装自动补全
 #1、安装bash-completion
